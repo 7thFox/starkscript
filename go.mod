@@ -1,1 +1,1 @@
-module github.com/7thFox/startscript
+module github.com/7thFox/starkscript
