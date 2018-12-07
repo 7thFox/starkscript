@@ -1,6 +1,9 @@
 ```
 NAME: example
 
+// Note that for usage you don't include the command name
+USAGE: [a word] [a number] [a long string of text] 
+
 HELPTEXT [ 
     This is an example of the language
     your line breaks and extra leading white space are ignored
@@ -17,9 +20,6 @@ WHITELIST [
         "119384097473822727"    //Smish
         "90945979385139200"     //Trot
 ]
-
-// Note that for usage you don't include the command name
-USAGE: [a word] [a number] [a long string of text] 
 
 // Let's say something
 SAY "Hello"

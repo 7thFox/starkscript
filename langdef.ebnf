@@ -1,6 +1,6 @@
 unless otherwise noted, newlines and whitespace are ignored
 ;
-cmd = "```" name [ perm_block ] [ helptext ] [ usage ] [ block ] [ wait [ say | delete ] ] "```";
+cmd = "```" name [ usage ] [ helptext ] [ perm_block ] [ block ] [ wait [ say | delete ] ] "```";
 
 name = "NAME:" string;
 perm_block = ( "BLACKLIST" | "WHITELIST" ) { "[" perm_term { perm_term } "]" };

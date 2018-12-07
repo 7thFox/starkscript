@@ -1,18 +1,22 @@
-package starkscript
+package main
 
 import (
 	"fmt"
 	"io/ioutil"
 	"strings"
-	"testing"
 
+	"github.com/7thFox/startscript/lexer"
 	"github.com/7thFox/startscript/token"
 )
 
-func TestMain(t *testing.T) {
-	scriptString, _ := ioutil.ReadFile("./docs/example.stark")
+func Lex(name string, input string) {
+	lexer.Lex(name, input)
+}
 
-	_, c := lex("foobar", string(scriptString))
+func main() {
+	scriptString, _ := ioutil.ReadFile("./example.stark")
+
+	_, c := lexer.Lex("foobar", string(scriptString))
 	for itm := range c {
 		switch itm.Typ {
 		case token.Name:

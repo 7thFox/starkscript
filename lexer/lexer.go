@@ -1,4 +1,4 @@
-package starkscript
+package lexer
 
 import (
 	"strings"
@@ -20,7 +20,7 @@ type lexer struct {
 	whitespace map[rune]bool
 }
 
-func lex(name string, input string) (*lexer, chan token.Token) {
+func Lex(name string, input string) (*lexer, chan token.Token) {
 	l := &lexer{
 		name:   name,
 		input:  input,

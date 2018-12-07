@@ -1,8 +1,6 @@
-package starkscript
+package lexer
 
 import (
-	"fmt"
-
 	class "github.com/7thFox/startscript/characterclass"
 	"github.com/7thFox/startscript/constants"
 	"github.com/7thFox/startscript/meta"
@@ -10,22 +8,6 @@ import (
 )
 
 type stateFn func(*lexer) stateFn
-
-func (l *lexer) errorf(format string, args ...interface{}) stateFn {
-	l.tokens <- token.Token{
-		Typ: token.Error,
-		Val: fmt.Sprintf(format, args...),
-	}
-	return nil
-}
-
-func (l *lexer) errorExpected(meta meta.Meta) stateFn {
-	k := l.pos + len(meta)
-	if k >= len(l.input) {
-		k = len(l.input) - 1
-	}
-	return l.errorf("Expected `%s', got '%s'", meta, l.input[l.pos:k])
-}
 
 func lexStartEndMeta(l *lexer) stateFn {
 	if l.ignoreString(meta.StartEnd) {
@@ -51,7 +33,7 @@ func lexName(l *lexer) stateFn {
 	l.emit(token.Name)
 	l.ignoreRun(class.WhitespaceMultiLine)
 
-	return lexHelptext
+	return nil //lexUsage
 }
 
 func lexHelptext(l *lexer) stateFn {
