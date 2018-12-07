@@ -1,0 +1,48 @@
+unless otherwise noted, newlines and whitespace are ignored
+;
+cmd = "```" name [ perm_block ] [ helptext ] [ usage ] [ block ] [ wait [ say | delete ] ] "```";
+
+name = "NAME:" string;
+perm_block = ( "BLACKLIST" | "WHITELIST" ) { "[" perm_term { perm_term } "]" };
+perm_term = "ROLE:" string
+    | "USER:" string { string };
+
+helptext = "HELPTEXT" "[" ?arbatrary text not including a ]? "]";
+
+// lol, nothing past this is done;
+
+usage = "USAGE";
+block = "{" { statement } "}";
+say = "SAY" sexpression;
+
+
+statement = if | for | assignment | wait;
+if = "IF" condition block { "ELSE" "IF" conditon block } [ "ELSE" block ];
+for = "FOR" lvar "=" nterm "TO" nterm block;
+assignment = "SET" var "=" expression;
+wait = "WAIT" int;
+
+expression = nexpression | sexpression | condition;
+nexpression = nterm "+" nexpression
+    | nterm "-" nexpression
+    | nterm "*" nexpression
+    | nterm "/" nexpression
+    | nterm "^" nexpression;
+sexpression = sterm "+" sexpression
+    | sterm "*" nterm;
+
+nterm = "n" , read_only_var | int | float | "(" nexpression ")";
+sterm = read_only_var | string | "(" sexpression ")" | "s(" nexpression ")";
+bterm = "b" , read_only_var | "true" | "false" | "(" conditon ")";
+
+condition = [ "!" ] bterm
+    | nexpression ( "==" | "!=" | ">" | "<" | ">=" | "<=" ) nexpression
+    | sexpression ( "==" | "!=" ) sexpression
+    | ["!"] bterm ( "&&" | "||" ) condition;
+
+gvar = ?g\$[a-z][a-z0-9]*?;
+lvar = ?\$[a-z][a-z0-9]*?;
+var = gvar | lvar;
+param = ?\$[0-9]+?;
+api_call = ?a${package name}.{function name}? "(" expression { "," expression } ")";
+read_only_var = var | param | api_call;

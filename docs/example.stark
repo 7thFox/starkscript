@@ -1,0 +1,98 @@
+```
+NAME: example
+
+HELPTEXT [ 
+    This is an example of the language
+    your line breaks and extra leading white space are ignored
+
+    But like a lot of markup dialects, 2 returns will make paragraph
+    breaks
+]
+
+WHITELIST [
+    ROLE: // Role Names (bot owner and server owner are always allowed)
+        "cool kid"
+        "staff"
+    USER: // User ID's
+        "119384097473822727"    //Smish
+        "90945979385139200"     //Trot
+]
+
+// Note that for usage you don't include the command name
+USAGE: [a word] [a number] [a long string of text] 
+
+// Let's say something
+SAY "Hello"
+
+// Let's say the 3 things the user gave us
+// $n refers to the nth thing space seperated
+SAY $1
+SAY $2
+// "..." returns everything after that parameter too
+SAY $3...
+
+// We can also print the stuff between (inclusive) two parameters
+SAY $1..3
+
+// And we can put more than one thing in a say:
+// The output will just be a string concatiation with spaces
+// between each of your elements
+SAY $1 $2 $3...
+
+// "Arithmitic" is kinda what you'd expect
+// However, parameters are considered strings
+// unless you expicitly use them otherwise (n$...)
+SAY 5 + 5
+SAY 5 + n$2
+SAY 2 * 2
+
+// Exponants are a thing too
+SAY 2^8
+
+// You can store values too
+// Define with := and a value
+foo := 5
+
+// Set with just a normal =
+foo = foo + 5
+
+// You can't change types
+// So, foo = "a string" would be invalid
+
+// Bools are a thing:
+foobar := TRUE
+
+// Flow control is pretty much as expected
+
+IF foo == 10 {
+    FOR i := 0; i < 12; i++ {
+        foo += i
+    }
+} ELSE IF !foobar !={
+    SAY "lol"
+}
+
+// I should probably mention that white space only kinda matter
+// For this intial spec, the only time you're going to see
+// more than one statement on a line is in a FOR
+
+// And that you do have access to a wait:
+WAIT 1000
+// Note that it will round to the nearest 1 second, but putting
+// "WAIT 1" looks awful and reminds me of the hell that was
+// writing objective-c, and I'd rather not revisit that
+
+// However, use of wait is restricted
+// After a WAIT, the only 2 things you're allowed to do is a final
+// SAY command, which will replace all that you've already written
+// Your other option is DELETE, which will delete the message
+// These are generally used for cleanup
+// Or in my case, replacing snarky messages
+
+// Final Notes:
+// Commands are timed out at ~5 seconds.
+// If you're dumb, and write something bad, it's going to time out
+// Note, this time does NOT include the WAIT and what's 
+// after it (hense the restrictions)
+
+```
