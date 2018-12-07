@@ -3,8 +3,8 @@ package lexer
 import (
 	"fmt"
 
-	"github.com/7thFox/startscript/meta"
-	"github.com/7thFox/startscript/token"
+	"github.com/7thFox/starkscript/meta"
+	"github.com/7thFox/starkscript/token"
 )
 
 func (l *lexer) errorf(format string, args ...interface{}) stateFn {

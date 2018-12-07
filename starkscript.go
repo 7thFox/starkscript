@@ -1,12 +1,12 @@
-package main
+package starkscript
 
 import (
 	"fmt"
 	"io/ioutil"
 	"strings"
 
-	"github.com/7thFox/startscript/lexer"
-	"github.com/7thFox/startscript/token"
+	"github.com/7thFox/starkscript/lexer"
+	"github.com/7thFox/starkscript/token"
 )
 
 func Lex(name string, input string) {

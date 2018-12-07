@@ -1,10 +1,10 @@
 package lexer
 
 import (
-	class "github.com/7thFox/startscript/characterclass"
-	"github.com/7thFox/startscript/constants"
-	"github.com/7thFox/startscript/meta"
-	"github.com/7thFox/startscript/token"
+	class "github.com/7thFox/starkscript/characterclass"
+	"github.com/7thFox/starkscript/constants"
+	"github.com/7thFox/starkscript/meta"
+	"github.com/7thFox/starkscript/token"
 )
 
 type stateFn func(*lexer) stateFn
