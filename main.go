@@ -11,6 +11,7 @@ import (
 
 func Lex(name string, input string) {
 	lexer.Lex(name, input)
+	fmt.Println("Foobar")
 }
 
 func main() {
