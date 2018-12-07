@@ -4,9 +4,9 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	class "github.com/7thFox/startscript/characterclass"
-	"github.com/7thFox/startscript/meta"
-	"github.com/7thFox/startscript/token"
+	class "github.com/7thFox/starkscript/characterclass"
+	"github.com/7thFox/starkscript/meta"
+	"github.com/7thFox/starkscript/token"
 )
 
 type lexer struct {
