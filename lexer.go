@@ -39,7 +39,7 @@ func (l *lexer) run() {
 }
 
 func (l *lexer) emit(t token.TokenType) {
-	l.tokens <- token.Token{t, l.input[l.start:l.pos]}
+	l.tokens <- token.Token{Typ: t, Val: l.input[l.start:l.pos]}
 	l.start = l.pos
 }
 

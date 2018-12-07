@@ -13,8 +13,8 @@ type stateFn func(*lexer) stateFn
 
 func (l *lexer) errorf(format string, args ...interface{}) stateFn {
 	l.tokens <- token.Token{
-		token.Error,
-		fmt.Sprintf(format, args...),
+		Typ: token.Error,
+		Val: fmt.Sprintf(format, args...),
 	}
 	return nil
 }
